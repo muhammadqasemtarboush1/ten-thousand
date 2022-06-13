@@ -2,13 +2,21 @@ from random import *
 from collections import Counter
 
 
+###################
+#  Mu'ayad Al Shareef
+###################
+###################
+#  Muhammad Tarboush
+###################
 class GameLogic:
     def __init__(self):
         pass
 
+    @staticmethod
     def roll_dice(num_dice):
         return tuple(randint(1, num_dice) for num in range(num_dice))
 
+    @staticmethod
     def calculate_score(tuple_of_init):
         base_scores = {1: 1000, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600}
         game_score = 0
