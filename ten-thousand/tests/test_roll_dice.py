@@ -4,12 +4,11 @@
 - The input to `roll_dice` is an integer between 1 and 6.
 - The output of `roll_dice` is a tuple with random values between 1 and 6.
 - The length of tuple must match the argument given to `roll_dice` method.
-
 """
 import pytest
 from ten_thousand.game_logic import GameLogic
 
-pytestmark = [pytest.mark.version_1]
+# pytestmark = [pytest.mark.version_1]
 
 
 def test_1_dice():
@@ -29,6 +28,7 @@ def test_2_dice():
 
 def test_3_dice():
     values = GameLogic.roll_dice(3)
+    print(len(values) )
     assert len(values) == 3
 
     for value in values:
