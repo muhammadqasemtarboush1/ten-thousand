@@ -1,6 +1,9 @@
-from ten_thousand.game_logic import GameLogic
-from ten_thousand.banker import Banker
-
+try:
+    from game_logic import GameLogic
+    from banker import Banker
+except ImportError:
+    from .game_logic import GameLogic
+    from .banker import Banker
 
 class Game:
     def __init__(self):
