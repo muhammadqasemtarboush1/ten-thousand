@@ -15,15 +15,15 @@ def test_quitter():
 def test_repeat_rolling():
         game = Game()
         diffs = diff(game.play, 'tests/version_2/repeat_roller.sim.txt')
-        assert diffs,not diffs
+        assert not diffs, diffs
 
 
 def test_bank_one():
     game = Game()
     diffs = diff(game.play, 'tests/version_2/bank_one_roll_then_quit.sim.txt')
-    assert diffs, not diffs
+    assert not diffs,  diffs
 
 def test_bank_two():
         game = Game()
         diffs = diff(game.play, 'tests/version_2/bank_first_for_two_rounds.sim.txt')
-        assert diffs, not diffs
+        assert not diffs, diffs

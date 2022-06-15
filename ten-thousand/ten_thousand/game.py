@@ -28,7 +28,7 @@ class Game:
             print('Enter dice to keep, or (q)uit:')
             user_answer = input('> ')
             if user_answer == 'q':
-                print('Thanks for playing. You earned 0 points')
+                print(f'Thanks for playing. You earned {self.banker.balance} points')
                 return
             if user_answer != 'q':
                 dices = [x for x in user_answer]
@@ -52,7 +52,9 @@ class Game:
                     self.round += 1
                     print(f'Starting round {self.round}')
                     self.dice = 6
-
+                if user_choice == 'q':
+                    print(f'Thanks for playing. You earned {self.banker.balance} points')
+                    return
 
 if __name__ == '__main__':
     game = Game()
