@@ -29,6 +29,7 @@ Tests
 How do you run tests?
 * pytest -v
 
-[//]: # (Any tests of note?)
+You can run the game by running the following command:
+> python ten_thousand/game.py
 
 [//]: # (Describe any tests that you did not complete, skipped, etc)
