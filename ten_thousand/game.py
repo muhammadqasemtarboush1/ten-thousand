@@ -6,11 +6,37 @@ except ImportError:
     from .banker import Banker
 from collections import Counter
 
+
 class Game:
     def __init__(self):
         self.round = 1
         self.dice = 6
         self.banker = Banker()
+        self.invalid_answer = False
+
+    def validate_shelfing(self, user_answer):
+        # print(self.invalid_answer,"invalid_answer")
+        if not self.invalid_answer:
+            dices = [x for x in user_answer if x.strip() != ""]
+            num_of_dice_shelving = len(dices)
+            dice_kept = map(int, dices)
+            roll_tuple = tuple(dice_kept)
+            score = GameLogic.calculate_score(roll_tuple)
+            self.banker.shelf(score)
+            self.dice -= num_of_dice_shelving
+            print(f'You have {self.banker.shelved} unbanked points and {self.dice} dice remaining')
+            print('(r)oll again, (b)ank your points or (q)uit:')
+        elif self.invalid_answer:
+            print('Cheater!!! Or possibly made a typo...')
+            dices = [x for x in user_answer if x.strip() != ""]
+            num_of_dice_shelving = len(dices)
+            dice_kept = map(int, dices)
+            roll_tuple = tuple(dice_kept)
+            score = GameLogic.calculate_score(roll_tuple)
+            self.banker.shelf(score)
+            # self.dice -= num_of_dice_shelving
+            print(f'You have {self.banker.shelved} unbanked points and {self.dice} dice remaining')
+            print('(r)oll again, (b)ank your points or (q)uit:')
 
     def play(self, roller=GameLogic.roll_dice):
         cheating_stauts = False
@@ -30,26 +56,21 @@ class Game:
             print(formatted_line)
             print('Enter dice to keep, or (q)uit:')
             user_answer = input('> ')
-            # check_cheater(user_answer, new_roller)
-            cheating_stauts = check_cheater(user_answer, new_roller)
             if user_answer == 'q':
                 print(f'Thanks for playing. You earned {self.banker.balance} points')
                 return
+
+            cheating_stauts = check_cheater(user_answer, new_roller)
             if user_answer != 'q':
                 if not cheating_stauts:
-                    dices = [x for x in user_answer if x.strip() != ""]
-                    num_of_dice_shelving = len(dices)
-                    dice_kept = map(int, dices)
-                    roll_tuple = tuple(dice_kept)
-                    score = GameLogic.calculate_score(roll_tuple)
-                    self.banker.shelf(score)
-                    self.dice -= num_of_dice_shelving
+                    raw_answers = user_answer.strip('1').strip('5').strip()
+                    if len(raw_answers) <= 2 and len(raw_answers) != 0 and '5' not in user_answer and '1' not in user_answer:
+                        self.invalid_answer = True
 
-                    print(f'You have {self.banker.shelved} unbanked points and {self.dice} dice remaining')
-                    print('(r)oll again, (b)ank your points or (q)uit:')
-
+                    self.validate_shelfing(user_answer)
                     user_choice = input('> ')
-
+                    if self.dice == 0 and user_choice == "r":
+                        self.dice = 6
                     if user_choice == 'b':
                         print(f'You banked {self.banker.shelved} points in round {self.round}')
                         self.banker.bank()

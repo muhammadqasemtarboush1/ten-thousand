@@ -26,7 +26,7 @@ class GameLogic:
             if len(high_score) == 6:
                 game_score = 1500
                 return game_score
-            if len(high_score) == 3 and high_score[0][1] == high_score[1][1] == 2:
+            if len(high_score) == 3 and high_score[0][1] == high_score[1][1] == high_score[2][1] == 2:
                 game_score = 1500
                 return game_score
             if dice_count[0] == 5 and dice_count[1] <= 2:

@@ -6,3 +6,10 @@ def test_cheater():
     diffs = diff(game.play, 'tests/version_3/cheat_and_fix.sim.txt')
     # print(diffs,"testing *************************************************")
     assert not diffs, diffs
+
+
+def test_hot_dice():
+    game = Game()
+    diffs = diff(game.play, 'tests/version_3/hot_dice.sim.txt')
+    # print(diffs,"testing *************************************************")
+    assert not diffs, diffs
