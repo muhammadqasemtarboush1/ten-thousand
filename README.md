@@ -20,8 +20,8 @@
 
 [//]: # (How to initialize/run your application &#40;where applicable&#41;)
 
-[Code](https://github.com/muhammadqasemtarboush1/ten-thousand/tree/main/ten-thousand)
-[Test](https://github.com/muhammadqasemtarboush1/ten-thousand/tree/main/ten-thousand/tests)
+[Code](https://github.com/muhammadqasemtarboush1/ten-thousand)
+[Test](https://github.com/muhammadqasemtarboush1/ten-thousand/tree/main/tests)
 
 [//]: # (How to use your library &#40;where applicable&#41;)
 Tests
