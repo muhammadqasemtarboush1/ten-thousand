@@ -42,3 +42,16 @@ class GameLogic:
             if dice_count[1] == 6:
                 game_score += base_scores[dice_count[0]] * 4
         return game_score
+
+    @staticmethod
+    def get_scorers(dice):
+        dices_score = GameLogic.calculate_score(dice)
+        if dices_score == 0:
+            return tuple()
+        scorers = []
+        for i, value in enumerate(dice):
+            slice_rolling = dice[:i] +  dice[i+1 :]
+            scoring = GameLogic.calculate_score(slice_rolling)
+            if dices_score != scoring:
+                scorers.append(value)
+        return tuple(scorers)

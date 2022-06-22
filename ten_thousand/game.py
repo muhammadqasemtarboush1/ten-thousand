@@ -8,16 +8,20 @@ from collections import Counter
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, rounds=0):
         self.round = 1
         self.dice = 6
         self.banker = Banker()
         self.invalid_answer = False
+        self.rounds = rounds
 
     def start_round(self):
         print(f'You banked {self.banker.shelved} points in round {self.round}')
         self.banker.bank()
         print(f'Total score is {self.banker.balance} points')
+        # self.rounds += 1
+        # if self.rounds == 20:
+        #     print(f'Thanks for playing. You earned {self.banker.balance} points')
         self.round += 1
         print(f'Starting round {self.round}')
         self.dice = 6
@@ -89,6 +93,10 @@ class Game:
                             self.dice = 6
                         if user_choice == 'b':
                             self.start_round()
+                            self.rounds += 1
+                            if self.rounds == 20:
+                                print(f'Thanks for playing. You earned {self.banker.balance} points')
+                                return
                         if user_choice == 'q':
                             print(f'Thanks for playing. You earned {self.banker.balance} points')
                             return
